@@ -1,0 +1,104 @@
+Nama : Luqmanul Hakim Mubarakh
+Nim : 231011402067
+Kelas : 04TPLP025
+
+Ringkasan materi sebelum uts 
+## Pandas & Matplotlib
+- Manipulasi dan visualisasi data.
+1. Manipulasi Data
+Manipulasi data adalah proses mengubah, membersihkan, dan menyiapkan data agar siap dianalisis. Tujuannya adalah membuat data menjadi lebih rapi, konsisten, dan sesuai kebutuhan analisis.
+Contoh kegiatan manipulasi data:
+Membersihkan data: menghapus nilai kosong (missing values), duplikat, atau data yang tidak valid.
+Mengubah format data: misalnya, mengubah tipe data dari string ke angka.
+Menyaring data: memilih baris atau kolom tertentu berdasarkan kondisi tertentu.
+Mengelompokkan dan meringkas data: seperti menghitung rata-rata penjualan per kategori.
+Menggabungkan data: menyatukan beberapa tabel (merge/join) berdasarkan kolom tertentu.
+Tools populer untuk manipulasi datam:
+-Python (dengan pustaka pandas)
+-Excel
+-R
+-SQL
+
+2. Visualisasi Data
+Visualisasi data adalah proses menyajikan data dalam bentuk grafik atau gambar untuk membantu memahami informasi yang terkandung di dalamnya. Visualisasi membantu menemukan pola, tren, dan anomali yang sulit dilihat dari angka mentah.
+
+Contoh jenis visualisasi:
+-Diagram batang (bar chart) – untuk membandingkan nilai antar kategori.
+-Diagram garis (line chart) – untuk melihat tren dari waktu ke waktu.
+-Diagram lingkaran (pie chart) – untuk menunjukkan proporsi bagian terhadap keseluruhan.
+-Histogram – untuk melihat distribusi frekuensi data.
+-Scatter plot (diagram sebar) – untuk melihat hubungan antara dua variabel 
+
+Tools populer untuk visualisasi data :
+Python (matplotlib, seaborn, plotly)
+Microsoft Excel
+Tableau
+Power BI
+
+- Pandas: filter, grup, transform.
+Pandas
+1. Filter
+Digunakan untuk menyaring baris data berdasarkan kondisi tertentu.
+Contoh python :
+ df[df['nilai'] > 70]
+2. Group (groupby)
+Digunakan untuk mengelompokkan data berdasarkan satu atau lebih kolom, lalu melakukan agregasi.
+Contoh :
+df.groupby('kelas')['nilai'].mean()
+3. Transform
+Mengubah setiap elemen dalam grup tanpa mengurangi jumlah baris (berbeda dengan agg).
+Contoh python :
+df['rata_kelas'] = df.groupby('kelas')['nilai'].transform('mean')
+
+- Matplotlib: grafik garis, batang, scatter.
+1. Grafik Garis (Line Plot)
+Cocok untuk menampilkan tren dari waktu ke waktu.
+Contoh python :
+plt.plot(x, y)
+2. Grafik Batang (Bar Chart)
+Digunakan untuk membandingkan antar kategori.
+Contoh python:
+plt.bar(kategori, jumlah)
+3. Scatter Plot (Diagram Sebar)
+Menampilkan hubungan antara dua variabel numerik.
+Contoh python:
+plt.scatter(x, y)
+
+## Naive Bayes
+Naive Bayes adalah metode klasifikasi berbasis probabilistik yang sederhana namun sangat efektif, terutama untuk data teks seperti spam filtering, analisis sentimen, dan klasifikasi dokumen.
+Konsep Dasar Naive Bayes
+-Berdasarkan Teorema Bayes, yang menghitung probabilitas suatu kelas berdasarkan data yang diamati.
+-Disebut "naive" karena diasumsikan semua fitur independen secara kondisional, padahal dalam kenyataannya bisa saling bergantung.
+
+Cara Kerja Naive Bayes
+-Hitung probabilitas tiap kelas (misalnya: spam atau bukan spam).
+-Hitung probabilitas fitur (kata, angka, dll) muncul dalam setiap kelas.
+-Gunakan teorema Bayes untuk menghitung kemungkinan kelas dari data baru.
+-Pilih kelas dengan probabilitas tertinggi.
+1. Kelebihan Naive Bayes:
+-Cepat dan efisien.
+-Akurat untuk data teks.
+-Bekerja baik meskipun asumsi independensi tidak sepenuhnya terpenuhi.
+2. Kekurangan:
+-Asumsi fitur independen tidak selalu realistis.
+-Tidak cocok untuk data dengan fitur yang sangat bergantung satu sama lain.
+
+## Decision Tree
+Decision Tree (Pohon Keputusan) adalah metode klasifikasi atau regresi berbentuk struktur pohon, di mana setiap node mewakili sebuah kondisi/pengujian atas fitur, 
+dan setiap cabang mewakili hasil dari pengujian tersebut, hingga mencapai daun (leaf) yang menunjukkan keputusan atau hasil prediksi.
+1. Ciri-ciri Utama:
+-Struktur pohon: akar → cabang → daun.
+-Setiap node memecah data berdasarkan fitur tertentu agar data makin homogen (misalnya semua dalam satu kelas).
+-Tujuan utama: memisahkan data berdasarkan kriteria terbaik (misalnya Gini, Entropy, atau MSE).
+2. Kelebihan:
+-Mudah diinterpretasikan (bisa digambar seperti diagram alur).
+-Tidak butuh normalisasi data atau skala khusus.
+-Bekerja untuk data kategorikal maupun numerik.
+3. Kekurangan:
+-Rentan overfitting, terutama jika pohonnya terlalu dalam dan mengikuti data pelatihan terlalu dekat.
+-Bisa sensitif terhadap perubahan kecil pada data (karena pemecahan bersifat greedy/lokal).
+-Tidak terlalu akurat dibanding metode ensemble (seperti Random Forest).
+4. Contoh Kasus Penggunaan:
+-Menentukan kelayakan pinjaman (berdasarkan penghasilan, umur, status kerja).
+-Diagnosis penyakit dari gejala.
+-Klasifikasi pelanggan (misalnya loyal vs. tidak loyal).
