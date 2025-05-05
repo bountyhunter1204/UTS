@@ -3,7 +3,8 @@ Nim : 231011402067
 Kelas : 04TPLP025
 
 Ringkasan materi sebelum uts
-Pandas & Matplotlib
+
+1. Pandas & Matplotlib
 - Manipulasi dan visualisasi data.
 1. Manipulasi Data
 Manipulasi data adalah proses mengubah, membersihkan, dan menyiapkan data agar siap dianalisis. Tujuannya adalah membuat data menjadi lebih rapi, konsisten, dan sesuai kebutuhan analisis.
@@ -64,7 +65,25 @@ Menampilkan hubungan antara dua variabel numerik.
 Contoh python:
 plt.scatter(x, y)
 
-Naive Bayes
+A. Pandas & Matplotlib: Data Processing & Visualization : 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv')
+
+print(df.head())
+
+print(df.describe())
+
+plt.scatter(df['sepal_length'], df['sepal_width'], c='blue')
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.title('Sepal Length vs Width')
+plt.grid(True)
+plt.show()
+
+
+2. Naive Bayes
 Naive Bayes adalah metode klasifikasi berbasis probabilistik yang sederhana namun sangat efektif, terutama untuk data teks seperti spam filtering, analisis sentimen, dan klasifikasi dokumen.
 Konsep Dasar Naive Bayes
 -Berdasarkan Teorema Bayes, yang menghitung probabilitas suatu kelas berdasarkan data yang diamati.
@@ -83,7 +102,26 @@ Cara Kerja Naive Bayes
 -Asumsi fitur independen tidak selalu realistis.
 -Tidak cocok untuk data dengan fitur yang sangat bergantung satu sama lain.
 
-Decision Tree
+2. Naive Bayes Classifier (GaussianNB) code :
+
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+X = df.drop('species', axis=1)
+y = df['species']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+
+3. Decision Tree
 Decision Tree (Pohon Keputusan) adalah metode klasifikasi atau regresi berbentuk struktur pohon, di mana setiap node mewakili sebuah kondisi/pengujian atas fitur, 
 dan setiap cabang mewakili hasil dari pengujian tersebut, hingga mencapai daun (leaf) yang menunjukkan keputusan atau hasil prediksi.
 1. Ciri-ciri Utama:
@@ -102,3 +140,18 @@ dan setiap cabang mewakili hasil dari pengujian tersebut, hingga mencapai daun (
 -Menentukan kelayakan pinjaman (berdasarkan penghasilan, umur, status kerja).
 -Diagnosis penyakit dari gejala.
 -Klasifikasi pelanggan (misalnya loyal vs. tidak loyal).
+
+3. Decision Tree Classifier Code :
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+tree_model = DecisionTreeClassifier(random_state=42)
+tree_model.fit(X_train, y_train)
+
+plt.figure(figsize=(15, 10))
+plot_tree(tree_model, feature_names=X.columns, class_names=tree_model.classes_, filled=True)
+plt.title("Decision Tree Visualization")
+plt.show()
+
+y_tree_pred = tree_model.predict(X_test)
+print("Accuracy Decision Tree:", accuracy_score(y_test, y_tree_pred))
